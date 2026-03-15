@@ -29,27 +29,35 @@ body {
   color: var(--star-white);
   font-family: 'Cormorant Garamond', Georgia, serif;
   overflow-x: hidden;
-  cursor: none;
 }
 
 /* ─── CUSTOM CURSOR ─── */
 #cursor {
-  position: fixed;
-  width: 12px; height: 12px;
-  pointer-events: none;
-  z-index: 9999;
-  transform: translate(-50%, -50%);
-  transition: transform 0.1s ease;
+  display: none;
 }
-#cursor::before {
-  content: '✦';
-  position: absolute;
-  top: 50%; left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 14px;
-  color: var(--gold);
-  text-shadow: 0 0 8px var(--gold), 0 0 20px rgba(201,168,76,0.5);
-  animation: cursorPulse 2s ease-in-out infinite;
+@media (pointer: fine) {
+  body {
+    cursor: none;
+  }
+  #cursor {
+    display: block;
+    position: fixed;
+    width: 12px; height: 12px;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: transform 0.1s ease;
+  }
+  #cursor::before {
+    content: '✦';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 14px;
+    color: var(--gold);
+    text-shadow: 0 0 8px var(--gold), 0 0 20px rgba(201,168,76,0.5);
+    animation: cursorPulse 2s ease-in-out infinite;
+  }
 }
 @keyframes cursorPulse {
   0%,100% { opacity: 0.8; transform: translate(-50%,-50%) scale(1); }
@@ -736,10 +744,10 @@ body {
 </div>
 
 <!-- ── MAIN ── -->
-<div id="main">
+<main id="main">
 
   <!-- HERO -->
-  <section id="hero">
+  <header id="hero">
     <p class="hero-pre">Une étoile, pour toi</p>
     <h2 class="hero-title">pour <span>Hafiya</span></h2>
     <p class="hero-sub">Il y a des personnes qui entrent dans une vie et la transforment pour toujours. Tu es l'une d'elles.</p>
@@ -747,44 +755,44 @@ body {
       <span>Descends</span>
       <div class="scroll-bar"></div>
     </div>
-  </section>
+  </header>
 
   <!-- MEMORIES -->
-  <div class="divider"><span class="divider-gem">✦</span></div>
-  <div class="section-wrap">
-    <p class="section-eyebrow">Nos moments</p>
+  <div class="divider" aria-hidden="true"><span class="divider-gem">✦</span></div>
+  <section class="section-wrap" aria-labelledby="memoriesEyebrow">
+    <h2 class="section-eyebrow" id="memoriesEyebrow">Nos moments</h2>
     <div class="memories-grid">
-      <div class="mem-card">
+      <article class="mem-card">
         <div class="mem-card-br"></div><div class="mem-card-br2"></div>
-        <div class="mem-icon">🏥</div>
-        <p class="mem-label">Ta présence</p>
+        <div class="mem-icon" aria-hidden="true">🏥</div>
+        <h3 class="mem-label">Ta présence</h3>
         <p class="mem-text">Le jour où j'étais à l'hôpital, tu étais là. Sans question, sans condition. Ce geste restera gravé en moi pour toujours.</p>
-      </div>
-      <div class="mem-card">
+      </article>
+      <article class="mem-card">
         <div class="mem-card-br"></div><div class="mem-card-br2"></div>
-        <div class="mem-icon">🌿</div>
-        <p class="mem-label">Bangr-Weoogo</p>
+        <div class="mem-icon" aria-hidden="true">🌿</div>
+        <h3 class="mem-label">Bangr-Weoogo</h3>
         <p class="mem-text">Ces moments simples passés ensemble dans ce parc — légers, vrais, sans artifice. Je les chéris plus que tu ne le sais.</p>
-      </div>
-      <div class="mem-card">
+      </article>
+      <article class="mem-card">
         <div class="mem-card-br"></div><div class="mem-card-br2"></div>
-        <div class="mem-icon">🎂</div>
-        <p class="mem-label">Ton anniversaire</p>
+        <div class="mem-icon" aria-hidden="true">🎂</div>
+        <h3 class="mem-label">Ton anniversaire</h3>
         <p class="mem-text">Te voir rire ce jour-là... c'est une image que je garderai dans un coin secret de mon cœur, pour toujours.</p>
-      </div>
-      <div class="mem-card">
+      </article>
+      <article class="mem-card">
         <div class="mem-card-br"></div><div class="mem-card-br2"></div>
-        <div class="mem-icon">🔑</div>
-        <p class="mem-label">Une dernière chance</p>
+        <div class="mem-icon" aria-hidden="true">🔑</div>
+        <h3 class="mem-label">Une dernière chance</h3>
         <p class="mem-text">Tu m'as accordé une chance que je ne méritais peut-être pas. Aujourd'hui je comprends — c'est toi, et toi seule, dont j'ai besoin.</p>
-      </div>
+      </article>
     </div>
-  </div>
+  </section>
 
   <!-- QUALITIES -->
-  <div class="divider"><span class="divider-gem">✦</span></div>
-  <div class="section-wrap">
-    <p class="qualities-heading">Ce que j'aime en toi</p>
+  <div class="divider" aria-hidden="true"><span class="divider-gem">✦</span></div>
+  <section class="section-wrap" aria-labelledby="qualitiesHeading">
+    <h2 class="qualities-heading" id="qualitiesHeading">Ce que j'aime en toi</h2>
     <div class="qualities-cloud">
       <span class="q-pill">Tu vois les âmes, pas les apparences</span>
       <span class="q-pill">Ta loyauté sans condition</span>
@@ -796,14 +804,14 @@ body {
       <span class="q-pill">Tu restes, même quand je m'éloigne</span>
       <span class="q-pill">Ta façon de regarder le cœur</span>
     </div>
-  </div>
+  </section>
 
   <!-- ENVELOPE / LETTER -->
-  <div class="divider"><span class="divider-gem">✦</span></div>
-  <section id="envelope-section">
+  <div class="divider" aria-hidden="true"><span class="divider-gem">✦</span></div>
+  <section id="envelope-section" aria-label="Lettre d'amour">
     <!-- ENVELOPE visible avant clic -->
     <div id="envelopeWrap" class="envelope-wrap">
-      <div id="envelope" class="envelope">
+      <div id="envelope" class="envelope" role="button" tabindex="0" aria-label="Ouvrir l'enveloppe">
         <div class="env-bottom"></div>
         <div class="env-flap-tri"></div>
         <div class="env-seal-center">✦</div>
@@ -811,26 +819,26 @@ body {
       <p class="env-click-hint" id="envHint">Clique pour ouvrir ✦</p>
     </div>
     <!-- LETTRE cachée, apparaît après clic -->
-    <div id="letterCard" class="letter-card">
+    <article id="letterCard" class="letter-card" aria-live="polite">
       <div class="letter-card-deco-tl"></div>
       <div class="letter-card-deco-tr"></div>
-      <p class="letter-header">Pour toi, Hafiya</p>
+      <h2 class="letter-header">Pour toi, Hafiya</h2>
       <div class="letter-content" id="letterText"></div>
       <p class="letter-sig" id="letterSig">— Ton homme ✦</p>
-    </div>
+    </article>
   </section>
 
   <!-- CONSTELLATION -->
-  <div class="divider"><span class="divider-gem">✦</span></div>
-  <section id="constellation-section">
-    <p class="section-eyebrow" id="constEyebrow">Notre constellation</p>
-    <canvas id="constCanvas" width="480" height="480"></canvas>
-    <p class="const-hint" id="constHint">Clique pour révéler notre étoile ✦</p>
+  <div class="divider" aria-hidden="true"><span class="divider-gem">✦</span></div>
+  <section id="constellation-section" aria-labelledby="constEyebrow">
+    <h2 class="section-eyebrow" id="constEyebrow">Notre constellation</h2>
+    <canvas id="constCanvas" width="480" height="480" role="button" tabindex="0" aria-label="Révéler la constellation"></canvas>
+    <p class="const-hint" id="constHint" aria-hidden="true">Clique pour révéler notre étoile ✦</p>
   </section>
 
   <!-- FINALE -->
-  <div class="divider"><span class="divider-gem">✦</span></div>
-  <section id="finale">
+  <div class="divider" aria-hidden="true"><span class="divider-gem">✦</span></div>
+  <section id="finale" aria-label="Mots de fin">
     <p class="finale-quote" id="finaleQuote">
       Avant toi, j'avais peur d'aimer.<br>
       Aujourd'hui, grâce à toi,<br>
@@ -839,10 +847,10 @@ body {
       dans mon univers.
     </p>
     <div class="finale-name-reveal" id="finaleName">Hafiya</div>
-    <div class="finale-dots" id="finaleDots">✦ &nbsp; ✦ &nbsp; ✦</div>
+    <div class="finale-dots" id="finaleDots" aria-hidden="true">✦ &nbsp; ✦ &nbsp; ✦</div>
   </section>
 
-</div><!-- /main -->
+</main><!-- /main -->
 
 <script>
 /* ══════════════════════════════════
@@ -871,6 +879,8 @@ function spawnTrail(x, y) {
   setTimeout(() => p.remove(), 800);
 }
 
+const PI2 = Math.PI * 2;
+
 /* ══════════════════════════════════
    BACKGROUND STARS
 ══════════════════════════════════ */
@@ -887,7 +897,7 @@ function mkStars() {
     r: Math.random()*1.4+0.2,
     base: Math.random()*0.5+0.1,
     speed: Math.random()*0.015+0.005,
-    phase: Math.random()*Math.PI*2,
+    phase: Math.random()*PI2,
     col: ['#e8e4ff','#e8e4ff','#e8e4ff','#c9a84c','#d4849e'][Math.floor(Math.random()*5)]
   }));
 }
@@ -899,7 +909,7 @@ function animSC() {
     sctx.globalAlpha = a;
     sctx.fillStyle = s.col;
     sctx.beginPath();
-    sctx.arc(s.x, s.y, s.r, 0, Math.PI*2);
+    sctx.arc(s.x, s.y, s.r, 0, PI2);
     sctx.fill();
   });
   sctx.globalAlpha = 1;
@@ -943,7 +953,7 @@ function animIC() {
     ictx.globalAlpha = s.alpha;
     ictx.fillStyle = s.col;
     ictx.beginPath();
-    ictx.arc(s.x, s.y, s.r, 0, Math.PI*2);
+    ictx.arc(s.x, s.y, s.r, 0, PI2);
     ictx.fill();
   });
   ictx.globalAlpha = 1;
@@ -1040,19 +1050,27 @@ Je veux finir ma vie avec toi.`;
 let letterDone = false;
 let charIdx = 0;
 
-document.getElementById('envelope').addEventListener('click', () => {
-  // Fade out envelope
+function handleEnvelopeOpen() {
   const wrap = document.getElementById('envelopeWrap');
+  if (wrap.style.display === 'none') return;
   wrap.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
   wrap.style.opacity = '0';
   wrap.style.transform = 'scale(0.9)';
   setTimeout(() => {
     wrap.style.display = 'none';
-    // Show letter card
     const card = document.getElementById('letterCard');
     card.classList.add('show');
     if (!letterDone) setTimeout(typeIt, 400);
   }, 500);
+}
+
+const envelopeEl = document.getElementById('envelope');
+envelopeEl.addEventListener('click', handleEnvelopeOpen);
+envelopeEl.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter' || e.key === ' ') {
+    e.preventDefault();
+    handleEnvelopeOpen();
+  }
 });
 
 function typeIt() {
@@ -1171,7 +1189,7 @@ function drawConst(p) {
   }
 }
 
-cc.addEventListener('click', () => {
+function revealConstellation() {
   if (cAnim || cDone) return;
   cAnim = true;
   document.getElementById('constHint').style.opacity = '0';
@@ -1185,6 +1203,14 @@ cc.addEventListener('click', () => {
     else { cDone = true; cAnim = false; }
   }
   requestAnimationFrame(step);
+}
+
+cc.addEventListener('click', revealConstellation);
+cc.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter' || e.key === ' ') {
+    e.preventDefault();
+    revealConstellation();
+  }
 });
 
 /* ══════════════════════════════════
