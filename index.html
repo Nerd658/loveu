@@ -424,6 +424,48 @@ body {
   border-color: rgba(201,168,76,0.5);
 }
 
+/* ─── GALLERY ─── */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  max-width: 960px;
+  width: 100%;
+}
+@media (max-width: 600px) {
+  .gallery-grid {
+    grid-template-columns: 1fr;
+  }
+}
+.gal-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  border: 1px solid rgba(201,168,76,0.25);
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+  aspect-ratio: 4 / 3;
+}
+.gal-item.vis {
+  opacity: 1;
+  transform: translateY(0);
+}
+.gal-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+  display: block;
+}
+.gal-item:hover {
+  border-color: rgba(201,168,76,0.6);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+}
+.gal-item:hover img {
+  transform: scale(1.05);
+}
+
 /* ─── ENVELOPE ─── */
 #envelope-section {
   min-height: 100vh;
@@ -806,6 +848,26 @@ body {
     </div>
   </section>
 
+  <!-- GALLERY -->
+  <div class="divider" aria-hidden="true"><span class="divider-gem">✦</span></div>
+  <section class="section-wrap" aria-labelledby="galleryHeading">
+    <h2 class="qualities-heading" id="galleryHeading">Éclats d'éternité</h2>
+    <div class="gallery-grid">
+      <div class="gal-item">
+        <img src="https://images.unsplash.com/photo-1475274047050-1d0c0975c63e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Ciel étoilé" loading="lazy">
+      </div>
+      <div class="gal-item">
+        <img src="https://images.unsplash.com/photo-1506318137071-a8e063b4bec0?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Pluie d'étoiles" loading="lazy">
+      </div>
+      <div class="gal-item">
+        <img src="https://images.unsplash.com/photo-1534447677768-be436bb09401?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Paysage nocturne de montagne" loading="lazy">
+      </div>
+      <div class="gal-item">
+        <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Galaxie scintillante" loading="lazy">
+      </div>
+    </div>
+  </section>
+
   <!-- ENVELOPE / LETTER -->
   <div class="divider" aria-hidden="true"><span class="divider-gem">✦</span></div>
   <section id="envelope-section" aria-label="Lettre d'amour">
@@ -991,8 +1053,8 @@ const obs = new IntersectionObserver(entries => {
   entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('vis'); });
 }, { threshold: 0.15 });
 
-document.querySelectorAll('.section-eyebrow, .mem-card, .q-pill, .qualities-heading, .finale-quote, .finale-name-reveal, .finale-dots, #constCanvas, .const-hint, #constEyebrow').forEach((el, i) => {
-  if (el.classList.contains('q-pill') || el.classList.contains('mem-card')) {
+document.querySelectorAll('.section-eyebrow, .mem-card, .q-pill, .qualities-heading, .finale-quote, .finale-name-reveal, .finale-dots, #constCanvas, .const-hint, #constEyebrow, .gal-item').forEach((el, i) => {
+  if (el.classList.contains('q-pill') || el.classList.contains('mem-card') || el.classList.contains('gal-item')) {
     el.style.transitionDelay = (i % 8) * 0.08 + 's';
   }
   obs.observe(el);
