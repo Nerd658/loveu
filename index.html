@@ -208,6 +208,7 @@ body {
   transition: transform 0.5s ease;
 }
 .intro-btn:hover::after { transform: translateX(100%); }
+.intro-btn:focus-visible { outline: 2px solid var(--gold); outline-offset: 4px; }
 
 /* ─── MAIN CONTENT ─── */
 #main { position: relative; z-index: 10; }
@@ -492,6 +493,7 @@ body {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 .envelope:hover { transform: translateY(-4px); }
+.envelope:focus-visible { outline: 2px solid var(--gold); outline-offset: 4px; border-radius: 4px; }
 
 /* bottom body */
 .env-bottom {
@@ -654,6 +656,7 @@ body {
   transition: opacity 1.2s ease;
   box-shadow: 0 0 80px rgba(45,27,105,0.3);
 }
+#constCanvas:focus-visible { outline: 2px solid var(--gold); outline-offset: 4px; }
 #constCanvas.vis { opacity: 1; }
 .const-hint {
   font-family: 'Cinzel', serif;
