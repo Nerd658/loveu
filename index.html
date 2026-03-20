@@ -31,6 +31,20 @@ body {
   overflow-x: hidden;
 }
 
+/* ─── ACCESSIBILITY & FOCUS ─── */
+.sr-only {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 4px;
+}
+
 /* ─── CUSTOM CURSOR ─── */
 #cursor {
   display: none;
@@ -881,12 +895,13 @@ body {
       <p class="env-click-hint" id="envHint">Clique pour ouvrir ✦</p>
     </div>
     <!-- LETTRE cachée, apparaît après clic -->
-    <article id="letterCard" class="letter-card" aria-live="polite">
+    <article id="letterCard" class="letter-card">
+      <div id="srLetter" class="sr-only" aria-live="polite"></div>
       <div class="letter-card-deco-tl"></div>
       <div class="letter-card-deco-tr"></div>
       <h2 class="letter-header">Pour toi, Hafiya</h2>
-      <div class="letter-content" id="letterText"></div>
-      <p class="letter-sig" id="letterSig">— Ton homme ✦</p>
+      <div class="letter-content" id="letterText" aria-hidden="true"></div>
+      <p class="letter-sig" id="letterSig" aria-hidden="true">— Ton homme ✦</p>
     </article>
   </section>
 
@@ -1122,6 +1137,7 @@ function handleEnvelopeOpen() {
     wrap.style.display = 'none';
     const card = document.getElementById('letterCard');
     card.classList.add('show');
+    document.getElementById('srLetter').textContent = fullLetter + " — Ton homme ✦";
     if (!letterDone) setTimeout(typeIt, 400);
   }, 500);
 }

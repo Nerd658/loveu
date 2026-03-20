@@ -1,0 +1,3 @@
+## 2024-05-24 - Screen Reader Spam on Typewriter Effects
+**Learning:** Combining `aria-live="polite"` with character-by-character typewriter animation effects causes screen readers to announce every single letter as it appears, leading to a completely broken, spammy experience for users relying on assistive technologies.
+**Action:** Always separate visual text animations (`aria-hidden="true"`) from screen reader text. Use a `.sr-only` visually hidden element with `aria-live="polite"` to inject the full text string at once.
