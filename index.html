@@ -24,6 +24,15 @@
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 
+:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+[tabindex="-1"]:focus-visible {
+  outline: none;
+}
+
 body {
   background: var(--midnight);
   color: var(--star-white);
@@ -786,7 +795,7 @@ body {
 </div>
 
 <!-- ── MAIN ── -->
-<main id="main">
+<main id="main" tabindex="-1">
 
   <!-- HERO -->
   <header id="hero">
@@ -881,7 +890,7 @@ body {
       <p class="env-click-hint" id="envHint">Clique pour ouvrir ✦</p>
     </div>
     <!-- LETTRE cachée, apparaît après clic -->
-    <article id="letterCard" class="letter-card" aria-live="polite">
+    <article id="letterCard" class="letter-card" aria-live="polite" tabindex="-1">
       <div class="letter-card-deco-tl"></div>
       <div class="letter-card-deco-tr"></div>
       <h2 class="letter-header">Pour toi, Hafiya</h2>
@@ -1043,7 +1052,10 @@ document.getElementById('enterBtn').addEventListener('click', () => {
   clearInterval(shootInterval);
   const intro = document.getElementById('cinematic-intro');
   intro.classList.add('fade-out');
-  setTimeout(() => intro.style.display = 'none', 1600);
+  setTimeout(() => {
+    intro.style.display = 'none';
+    document.getElementById('main').focus();
+  }, 1600);
 });
 
 /* ══════════════════════════════════
@@ -1122,6 +1134,7 @@ function handleEnvelopeOpen() {
     wrap.style.display = 'none';
     const card = document.getElementById('letterCard');
     card.classList.add('show');
+    card.focus();
     if (!letterDone) setTimeout(typeIt, 400);
   }, 500);
 }
