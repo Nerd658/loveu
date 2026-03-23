@@ -33,6 +33,17 @@ html { scroll-behavior: smooth; }
   outline: none;
 }
 
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
 body {
   background: var(--midnight);
   color: var(--star-white);
@@ -890,11 +901,12 @@ body {
       <p class="env-click-hint" id="envHint">Clique pour ouvrir ✦</p>
     </div>
     <!-- LETTRE cachée, apparaît après clic -->
-    <article id="letterCard" class="letter-card" aria-live="polite" tabindex="-1">
+    <article id="letterCard" class="letter-card" tabindex="-1">
       <div class="letter-card-deco-tl"></div>
       <div class="letter-card-deco-tr"></div>
       <h2 class="letter-header">Pour toi, Hafiya</h2>
-      <div class="letter-content" id="letterText"></div>
+      <div id="letterReader" class="sr-only" aria-live="polite"></div>
+      <div class="letter-content" id="letterText" aria-hidden="true"></div>
       <p class="letter-sig" id="letterSig">— Ton homme ✦</p>
     </article>
   </section>
@@ -1123,18 +1135,32 @@ Je veux finir ma vie avec toi.`;
 
 let letterDone = false;
 let charIdx = 0;
+let envelopeOpened = false;
 
 function handleEnvelopeOpen() {
+  if (envelopeOpened) return;
+  envelopeOpened = true;
+
   const wrap = document.getElementById('envelopeWrap');
   if (wrap.style.display === 'none') return;
   wrap.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
   wrap.style.opacity = '0';
   wrap.style.transform = 'scale(0.9)';
+
+  // Disable envelope to prevent double click bugs
+  const envelopeEl = document.getElementById('envelope');
+  envelopeEl.style.pointerEvents = 'none';
+  envelopeEl.tabIndex = -1;
+
   setTimeout(() => {
     wrap.style.display = 'none';
     const card = document.getElementById('letterCard');
     card.classList.add('show');
     card.focus();
+
+    // Announce the full letter to screen readers immediately
+    document.getElementById('letterReader').textContent = fullLetter;
+
     if (!letterDone) setTimeout(typeIt, 400);
   }, 500);
 }
