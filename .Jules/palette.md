@@ -1,3 +1,7 @@
-## 2024-05-18 - Managing Focus on Display Transitions
-**Learning:** When navigating between "screens" (e.g. intro to main page, or opening an envelope to a letter) implemented via CSS opacity/display toggles in a single page app, screen readers and keyboard users lose their place, and focus is often reset to the document body. Adding `tabindex="-1"` and programmatically focusing the newly revealed container dramatically improves the logical document flow.
-**Action:** Always manually route focus (`element.focus()`) to the new top-level container (using `tabindex="-1"`) after visually hiding an active screen or element and revealing a new one.
+## 2025-03-24 - Focus trapped beneath overlays
+**Learning:** Keyboard-only users can inadvertently tab to interactive elements (`[tabindex="0"]`, buttons, etc) that are positioned "beneath" full-screen cinematic overlay components (like `#cinematic-intro`). Since the design relies on a single page flow without `<dialog>` modals, background elements were leaking focus early.
+**Action:** The `<main>` wrapper must use the `inert` attribute natively while cinematic full-screen overlays are active, then have it removed via JS `removeAttribute('inert')` right before calling `.focus()` on the main content container to preserve natural tab order continuity.
+
+## 2025-03-24 - Focus trapped beneath overlays
+**Learning:** Keyboard-only users can inadvertently tab to interactive elements (`[tabindex="0"]`, buttons, etc) that are positioned "beneath" full-screen cinematic overlay components (like `#cinematic-intro`). Since the design relies on a single page flow without `<dialog>` modals, background elements were leaking focus early.
+**Action:** The `<main>` wrapper must use the `inert` attribute natively while cinematic full-screen overlays are active, then have it removed via JS `removeAttribute('inert')` right before calling `.focus()` on the main content container to preserve natural tab order continuity.
