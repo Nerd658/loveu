@@ -1,3 +1,6 @@
 ## 2024-05-18 - Managing Focus on Display Transitions
 **Learning:** When navigating between "screens" (e.g. intro to main page, or opening an envelope to a letter) implemented via CSS opacity/display toggles in a single page app, screen readers and keyboard users lose their place, and focus is often reset to the document body. Adding `tabindex="-1"` and programmatically focusing the newly revealed container dramatically improves the logical document flow.
 **Action:** Always manually route focus (`element.focus()`) to the new top-level container (using `tabindex="-1"`) after visually hiding an active screen or element and revealing a new one.
+## 2024-05-18 - Managing Focus with Full-Screen Overlays
+**Learning:** When using custom full-screen overlays (like a cinematic intro) instead of native `<dialog>` modals, screen readers and keyboard users can easily tab out of the overlay and interact with hidden background content. This creates a severe accessibility issue.
+**Action:** Always use the HTML `inert` attribute on the background content containers (like `<main>`) while the custom overlay is active, and programmatically remove the attribute when the overlay is dismissed to restore accessibility.

@@ -795,7 +795,7 @@ body {
 </div>
 
 <!-- ── MAIN ── -->
-<main id="main" tabindex="-1">
+<main id="main" tabindex="-1" inert>
 
   <!-- HERO -->
   <header id="hero">
@@ -1054,7 +1054,9 @@ document.getElementById('enterBtn').addEventListener('click', () => {
   intro.classList.add('fade-out');
   setTimeout(() => {
     intro.style.display = 'none';
-    document.getElementById('main').focus();
+    const mainEl = document.getElementById('main');
+    mainEl.removeAttribute('inert');
+    mainEl.focus();
   }, 1600);
 });
 
