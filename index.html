@@ -660,10 +660,17 @@ body {
     rgba(3,4,15,0.85) 65%);
   cursor: pointer;
   opacity: 0;
-  transition: opacity 1.2s ease;
+  transition: opacity 1.2s ease, transform 0.4s ease, box-shadow 0.4s ease;
   box-shadow: 0 0 80px rgba(45,27,105,0.3);
 }
 #constCanvas.vis { opacity: 1; }
+#constCanvas:hover:not([aria-disabled="true"]) {
+  transform: scale(1.02);
+  box-shadow: 0 0 100px rgba(201,168,76,0.2);
+}
+#constCanvas[aria-disabled="true"] {
+  cursor: default;
+}
 .const-hint {
   font-family: 'Cinzel', serif;
   font-size: 0.6rem;
@@ -887,7 +894,7 @@ body {
         <div class="env-flap-tri"></div>
         <div class="env-seal-center">✦</div>
       </div>
-      <p class="env-click-hint" id="envHint">Clique pour ouvrir ✦</p>
+      <p class="env-click-hint" id="envHint">Clique (ou Entrée) pour ouvrir ✦</p>
     </div>
     <!-- LETTRE cachée, apparaît après clic -->
     <article id="letterCard" class="letter-card" aria-live="polite" tabindex="-1">
@@ -904,7 +911,7 @@ body {
   <section id="constellation-section" aria-labelledby="constEyebrow">
     <h2 class="section-eyebrow" id="constEyebrow">Notre constellation</h2>
     <canvas id="constCanvas" width="480" height="480" role="button" tabindex="0" aria-label="Révéler la constellation"></canvas>
-    <p class="const-hint" id="constHint" aria-hidden="true">Clique pour révéler notre étoile ✦</p>
+    <p class="const-hint" id="constHint" aria-hidden="true">Clique (ou Entrée) pour révéler notre étoile ✦</p>
   </section>
 
   <!-- FINALE -->
@@ -1269,6 +1276,8 @@ function drawConst(p) {
 function revealConstellation() {
   if (cAnim || cDone) return;
   cAnim = true;
+  cc.setAttribute('aria-disabled', 'true');
+  cc.setAttribute('aria-label', 'Constellation révélée');
   document.getElementById('constHint').style.opacity = '0';
   let t0 = null;
   const dur = 3500;
