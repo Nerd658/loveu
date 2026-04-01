@@ -660,10 +660,14 @@ body {
     rgba(3,4,15,0.85) 65%);
   cursor: pointer;
   opacity: 0;
-  transition: opacity 1.2s ease;
+  transition: opacity 1.2s ease, border-color 0.3s ease, transform 0.3s ease;
   box-shadow: 0 0 80px rgba(45,27,105,0.3);
 }
 #constCanvas.vis { opacity: 1; }
+#constCanvas:hover, #constCanvas:focus-visible {
+  border-color: var(--gold);
+  transform: scale(1.02);
+}
 .const-hint {
   font-family: 'Cinzel', serif;
   font-size: 0.6rem;
@@ -1270,6 +1274,9 @@ function revealConstellation() {
   if (cAnim || cDone) return;
   cAnim = true;
   document.getElementById('constHint').style.opacity = '0';
+  cc.setAttribute('aria-disabled', 'true');
+  cc.setAttribute('aria-label', 'Constellation révélée');
+  cc.style.cursor = 'default';
   let t0 = null;
   const dur = 3500;
   function step(ts) {
