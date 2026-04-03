@@ -664,6 +664,16 @@ body {
   box-shadow: 0 0 80px rgba(45,27,105,0.3);
 }
 #constCanvas.vis { opacity: 1; }
+#constCanvas:hover:not([aria-disabled="true"]) {
+  border-color: rgba(201,168,76,0.4);
+  box-shadow: 0 0 100px rgba(45,27,105,0.5);
+  transform: scale(1.02);
+}
+#constCanvas:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 4px;
+  border-radius: 50%;
+}
 .const-hint {
   font-family: 'Cinzel', serif;
   font-size: 0.6rem;
@@ -903,7 +913,7 @@ body {
   <div class="divider" aria-hidden="true"><span class="divider-gem">✦</span></div>
   <section id="constellation-section" aria-labelledby="constEyebrow">
     <h2 class="section-eyebrow" id="constEyebrow">Notre constellation</h2>
-    <canvas id="constCanvas" width="480" height="480" role="button" tabindex="0" aria-label="Révéler la constellation"></canvas>
+    <canvas id="constCanvas" width="480" height="480" role="button" tabindex="0" aria-label="Révéler la constellation" aria-disabled="false"></canvas>
     <p class="const-hint" id="constHint" aria-hidden="true">Clique pour révéler notre étoile ✦</p>
   </section>
 
@@ -1270,6 +1280,9 @@ function revealConstellation() {
   if (cAnim || cDone) return;
   cAnim = true;
   document.getElementById('constHint').style.opacity = '0';
+  cc.setAttribute('aria-disabled', 'true');
+  cc.setAttribute('aria-label', 'Constellation révélée');
+  cc.style.cursor = 'default';
   let t0 = null;
   const dur = 3500;
   function step(ts) {
