@@ -4,3 +4,6 @@
 ## 2024-05-18 - Preventing Focus Leaks with Full-Screen Overlays
 **Learning:** In a single page app, when using full-screen cinematic overlays instead of native `<dialog>` modals, background elements remain focusable by keyboard navigation. Users can Tab out of the overlay and interact with hidden or visually obscured elements.
 **Action:** Use the `inert` attribute on the background container (like `<main>`) while the custom overlay is active. Remove the `inert` attribute right before programmatically focusing the container after the overlay is dismissed.
+## 2024-05-19 - Interactive Canvas Accessibility and Feedback
+**Learning:** Using `<canvas>` elements as interactive buttons requires explicit visual and screen reader feedback. Without native states like `:active` or `disabled`, users (especially keyboard and screen reader users) might not realize the element is clickable or that their interaction succeeded.
+**Action:** Always provide visual hover/focus states via CSS for interactive canvases. When the action is triggered, manually update `aria-disabled` to "true", change the `aria-label` to reflect the new state, and update the CSS `cursor` property to prevent further interaction ambiguity.
