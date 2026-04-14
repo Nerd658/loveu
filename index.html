@@ -664,6 +664,13 @@ body {
   box-shadow: 0 0 80px rgba(45,27,105,0.3);
 }
 #constCanvas.vis { opacity: 1; }
+#constCanvas:hover:not([aria-disabled="true"]) {
+  background: radial-gradient(circle at 50% 50%, rgba(45,27,105,0.4) 0%, rgba(3,4,15,0.85) 65%);
+  box-shadow: 0 0 100px rgba(45,27,105,0.5);
+}
+#constCanvas:focus-visible {
+  border-radius: 50%;
+}
 .const-hint {
   font-family: 'Cinzel', serif;
   font-size: 0.6rem;
@@ -1269,6 +1276,9 @@ function drawConst(p) {
 function revealConstellation() {
   if (cAnim || cDone) return;
   cAnim = true;
+  cc.setAttribute('aria-disabled', 'true');
+  cc.setAttribute('aria-label', 'Constellation révélée');
+  cc.style.cursor = 'default';
   document.getElementById('constHint').style.opacity = '0';
   let t0 = null;
   const dur = 3500;
