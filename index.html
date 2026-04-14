@@ -1372,18 +1372,23 @@ function animFW() {
   if (!fwActive) return;
   fwctx.clearRect(0,0,fw.width,fw.height);
 
-  particles = particles.filter(p => p.alpha > 0.01);
-  particles.forEach(p => {
-    p.x += p.vx; p.y += p.vy;
-    p.vy += p.gravity;
-    p.vx *= 0.98; p.vy *= 0.98;
-    p.alpha -= p.decay;
-    fwctx.globalAlpha = p.alpha;
-    fwctx.fillStyle = p.col;
-    fwctx.beginPath();
-    fwctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
-    fwctx.fill();
-  });
+  const nextParticles = [];
+  for (let i = 0; i < particles.length; i++) {
+    const p = particles[i];
+    if (p.alpha > 0.01) {
+      p.x += p.vx; p.y += p.vy;
+      p.vy += p.gravity;
+      p.vx *= 0.98; p.vy *= 0.98;
+      p.alpha -= p.decay;
+      fwctx.globalAlpha = p.alpha;
+      fwctx.fillStyle = p.col;
+      fwctx.beginPath();
+      fwctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      fwctx.fill();
+      nextParticles.push(p);
+    }
+  }
+  particles = nextParticles;
   fwctx.globalAlpha = 1;
 
   const elapsed = Date.now() - fwStart;
