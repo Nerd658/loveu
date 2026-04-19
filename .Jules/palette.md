@@ -7,3 +7,6 @@
 ## 2024-05-18 - Managing State and Focus for Canvas Interactive Elements
 **Learning:** When using a `<canvas>` element as an interactive button (using `role="button"` and `tabindex="0"`), default browser behavior doesn't visually accommodate custom shapes (like circles) for focus rings. Furthermore, changes to the canvas's interactive state are not automatically conveyed to screen readers.
 **Action:** Always provide custom `:focus-visible` styles (e.g., matching the element's border-radius) for non-standard elements like canvas buttons. Manually update `aria-disabled` and `aria-label` attributes via JavaScript upon interaction to ensure state changes are communicated to assistive technologies.
+## 2024-05-18 - Typewriter Effect Screen Reader Verbosity
+**Learning:** Using `aria-live` on a container with a typewriter or character-by-character animation creates excessive and confusing verbosity for screen reader users, as every single character added is announced individually as a DOM change.
+**Action:** Remove `aria-live` from the animating text container. Instead, set the full text as the `aria-label` on the parent focusable container and use `aria-hidden="true"` on the dynamically changing child nodes. This ensures screen readers read the full content smoothly once when the container receives focus.
