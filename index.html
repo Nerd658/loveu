@@ -742,6 +742,19 @@ body {
 }
 .finale-dots.vis { opacity: 0.7; }
 
+.typing-cursor {
+  display: inline-block;
+  width: 2px;
+  height: 1em;
+  background: var(--gold);
+  vertical-align: middle;
+  animation: blink2 1s step-end infinite;
+  margin-left: 2px;
+}
+@keyframes blink2 {
+  50% { opacity: 0; }
+}
+
 /* ─── ANIMATIONS ─── */
 @keyframes float {
   0%,100% { transform: translateY(0); }
@@ -897,12 +910,12 @@ body {
       <p class="env-click-hint" id="envHint">Clique pour ouvrir ✦</p>
     </div>
     <!-- LETTRE cachée, apparaît après clic -->
-    <article id="letterCard" class="letter-card" aria-live="polite" tabindex="-1">
+    <article id="letterCard" class="letter-card" tabindex="-1">
       <div class="letter-card-deco-tl"></div>
       <div class="letter-card-deco-tr"></div>
-      <h2 class="letter-header">Pour toi, Hafiya</h2>
-      <div class="letter-content" id="letterText"></div>
-      <p class="letter-sig" id="letterSig">— Ton homme ✦</p>
+      <h2 class="letter-header" aria-hidden="true">Pour toi, Hafiya</h2>
+      <div class="letter-content" id="letterText" aria-hidden="true"></div>
+      <p class="letter-sig" id="letterSig" aria-hidden="true">— Ton homme ✦</p>
     </article>
   </section>
 
@@ -1143,6 +1156,7 @@ function handleEnvelopeOpen() {
     wrap.style.display = 'none';
     const card = document.getElementById('letterCard');
     card.classList.add('show');
+    card.setAttribute('aria-label', "Pour toi, Hafiya.\n\n" + fullLetter + "\n\n— Ton homme ✦");
     card.focus();
     if (!letterDone) setTimeout(typeIt, 400);
   }, 500);
@@ -1160,22 +1174,20 @@ envelopeEl.addEventListener('keydown', (e) => {
 function typeIt() {
   const el = document.getElementById('letterText');
   if (charIdx < fullLetter.length) {
-    el.innerHTML = fullLetter.slice(0,charIdx+1).replace(/\n/g,'<br>') + '<span style="display:inline-block;width:2px;height:1em;background:#8B6914;vertical-align:middle;animation:blink2 1s step-end infinite;margin-left:2px"></span>';
+    el.textContent = fullLetter.slice(0, charIdx + 1);
+    const cursorSpan = document.createElement('span');
+    cursorSpan.className = 'typing-cursor';
+    el.appendChild(cursorSpan);
     charIdx++;
     const ch = fullLetter[charIdx-1];
     const delay = ch === '\n' ? 350 : ch === '.' || ch === '!' ? 180 : ch === ',' ? 100 : 28;
     setTimeout(typeIt, delay);
   } else {
-    el.innerHTML = fullLetter.replace(/\n/g,'<br>');
+    el.textContent = fullLetter;
     document.getElementById('letterSig').classList.add('show');
     letterDone = true;
   }
 }
-
-/* Add blink keyframe dynamically */
-const style = document.createElement('style');
-style.textContent = '@keyframes blink2 { 50% { opacity:0; } }';
-document.head.appendChild(style);
 
 /* ══════════════════════════════════
    CONSTELLATION
