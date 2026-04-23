@@ -897,12 +897,14 @@ body {
       <p class="env-click-hint" id="envHint">Clique pour ouvrir ✦</p>
     </div>
     <!-- LETTRE cachée, apparaît après clic -->
-    <article id="letterCard" class="letter-card" aria-live="polite" tabindex="-1">
+    <article id="letterCard" class="letter-card" tabindex="-1">
       <div class="letter-card-deco-tl"></div>
       <div class="letter-card-deco-tr"></div>
-      <h2 class="letter-header">Pour toi, Hafiya</h2>
-      <div class="letter-content" id="letterText"></div>
-      <p class="letter-sig" id="letterSig">— Ton homme ✦</p>
+      <div aria-hidden="true">
+        <h2 class="letter-header">Pour toi, Hafiya</h2>
+        <div class="letter-content" id="letterText"></div>
+        <p class="letter-sig" id="letterSig">— Ton homme ✦</p>
+      </div>
     </article>
   </section>
 
@@ -1143,6 +1145,7 @@ function handleEnvelopeOpen() {
     wrap.style.display = 'none';
     const card = document.getElementById('letterCard');
     card.classList.add('show');
+    card.setAttribute('aria-label', "Pour toi, Hafiya. " + fullLetter + " — Ton homme");
     card.focus();
     if (!letterDone) setTimeout(typeIt, 400);
   }, 500);
