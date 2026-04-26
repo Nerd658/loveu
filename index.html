@@ -910,7 +910,7 @@ body {
     <article id="letterCard" class="letter-card" tabindex="-1">
       <div class="letter-card-deco-tl"></div>
       <div class="letter-card-deco-tr"></div>
-      <h2 class="letter-header" aria-hidden="true">Pour toi, Hafiya</h2>
+      <h2 class="letter-header">Pour toi, Hafiya</h2>
       <div class="letter-content" id="letterText" aria-hidden="true"></div>
       <p class="letter-sig" id="letterSig" aria-hidden="true">— Ton homme ✦</p>
     </article>
@@ -1154,6 +1154,7 @@ function handleEnvelopeOpen() {
     const card = document.getElementById('letterCard');
     card.setAttribute('aria-label', "Pour toi, Hafiya. " + fullLetter + " — Ton homme");
     card.classList.add('show');
+    card.setAttribute('aria-label', fullLetter);
     card.focus();
     if (!letterDone) setTimeout(typeIt, 400);
   }, 500);
@@ -1302,7 +1303,12 @@ function revealConstellation() {
     cProgress = Math.min((ts-t0)/dur, 1);
     drawConst(cProgress);
     if (cProgress < 1) requestAnimationFrame(step);
-    else { cDone = true; cAnim = false; }
+    else {
+      cDone = true;
+      cAnim = false;
+      document.getElementById('constHint').textContent = 'Constellation révélée ✦';
+      document.getElementById('constHint').style.opacity = '0.7';
+    }
   }
   requestAnimationFrame(step);
 }
