@@ -897,12 +897,12 @@ body {
       <p class="env-click-hint" id="envHint">Clique pour ouvrir ✦</p>
     </div>
     <!-- LETTRE cachée, apparaît après clic -->
-    <article id="letterCard" class="letter-card" aria-live="polite" tabindex="-1">
+    <article id="letterCard" class="letter-card" tabindex="-1">
       <div class="letter-card-deco-tl"></div>
       <div class="letter-card-deco-tr"></div>
       <h2 class="letter-header">Pour toi, Hafiya</h2>
-      <div class="letter-content" id="letterText"></div>
-      <p class="letter-sig" id="letterSig">— Ton homme ✦</p>
+      <div class="letter-content" id="letterText" aria-hidden="true"></div>
+      <p class="letter-sig" id="letterSig" aria-hidden="true">— Ton homme ✦</p>
     </article>
   </section>
 
@@ -1143,6 +1143,7 @@ function handleEnvelopeOpen() {
     wrap.style.display = 'none';
     const card = document.getElementById('letterCard');
     card.classList.add('show');
+    card.setAttribute('aria-label', fullLetter);
     card.focus();
     if (!letterDone) setTimeout(typeIt, 400);
   }, 500);
@@ -1287,7 +1288,12 @@ function revealConstellation() {
     cProgress = Math.min((ts-t0)/dur, 1);
     drawConst(cProgress);
     if (cProgress < 1) requestAnimationFrame(step);
-    else { cDone = true; cAnim = false; }
+    else {
+      cDone = true;
+      cAnim = false;
+      document.getElementById('constHint').textContent = 'Constellation révélée ✦';
+      document.getElementById('constHint').style.opacity = '0.7';
+    }
   }
   requestAnimationFrame(step);
 }
