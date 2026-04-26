@@ -624,6 +624,16 @@ body {
 }
 .letter-sig.show { opacity: 1; }
 
+.typing-cursor {
+  display: inline-block;
+  width: 2px;
+  height: 1em;
+  background: var(--gold);
+  vertical-align: middle;
+  animation: blink2 1s step-end infinite;
+  margin-left: 2px;
+}
+
 .env-click-hint {
   text-align: center;
   margin-top: 1.5rem;
@@ -1142,6 +1152,7 @@ function handleEnvelopeOpen() {
   setTimeout(() => {
     wrap.style.display = 'none';
     const card = document.getElementById('letterCard');
+    card.setAttribute('aria-label', "Pour toi, Hafiya. " + fullLetter + " — Ton homme");
     card.classList.add('show');
     card.setAttribute('aria-label', fullLetter);
     card.focus();
@@ -1161,13 +1172,17 @@ envelopeEl.addEventListener('keydown', (e) => {
 function typeIt() {
   const el = document.getElementById('letterText');
   if (charIdx < fullLetter.length) {
-    el.innerHTML = fullLetter.slice(0,charIdx+1).replace(/\n/g,'<br>') + '<span style="display:inline-block;width:2px;height:1em;background:#8B6914;vertical-align:middle;animation:blink2 1s step-end infinite;margin-left:2px"></span>';
+    el.textContent = fullLetter.slice(0, charIdx + 1);
+    const cursor = document.createElement('span');
+    cursor.className = 'typing-cursor';
+    cursor.setAttribute('aria-hidden', 'true');
+    el.appendChild(cursor);
     charIdx++;
     const ch = fullLetter[charIdx-1];
     const delay = ch === '\n' ? 350 : ch === '.' || ch === '!' ? 180 : ch === ',' ? 100 : 28;
     setTimeout(typeIt, delay);
   } else {
-    el.innerHTML = fullLetter.replace(/\n/g,'<br>');
+    el.textContent = fullLetter;
     document.getElementById('letterSig').classList.add('show');
     letterDone = true;
   }
