@@ -45,8 +45,11 @@ body {
   display: none;
 }
 @media (pointer: fine) {
-  body {
-    cursor: none;
+  body, button, [role="button"] {
+    cursor: none !important;
+  }
+  body:has(button:hover, [role="button"]:not([aria-disabled="true"]):hover) #cursor {
+    transform: translate(-50%, -50%) scale(1.8);
   }
   #cursor {
     display: block;
