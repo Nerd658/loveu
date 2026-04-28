@@ -67,6 +67,11 @@ body {
     text-shadow: 0 0 8px var(--gold), 0 0 20px rgba(201,168,76,0.5);
     animation: cursorPulse 2s ease-in-out infinite;
   }
+  body:has(.intro-btn:hover) #cursor,
+  body:has(.envelope:hover) #cursor,
+  body:has(#constCanvas:hover) #cursor {
+    transform: translate(-50%, -50%) scale(1.5) !important;
+  }
 }
 @keyframes cursorPulse {
   0%,100% { opacity: 0.8; transform: translate(-50%,-50%) scale(1); }
@@ -197,7 +202,7 @@ body {
   border: 1px solid rgba(201,168,76,0.4);
   padding: 0.8rem 2.5rem;
   background: transparent;
-  cursor: pointer;
+  cursor: none !important;
   opacity: 0;
   animation: introTagline 1s ease 5s forwards;
   transition: background 0.3s, border-color 0.3s;
@@ -497,7 +502,7 @@ body {
   position: relative;
   width: min(420px, 88vw);
   height: 260px;
-  cursor: pointer;
+  cursor: none !important;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 .envelope:hover { transform: translateY(-4px); }
@@ -668,7 +673,7 @@ body {
   background: radial-gradient(circle at 50% 50%,
     rgba(45,27,105,0.25) 0%,
     rgba(3,4,15,0.85) 65%);
-  cursor: pointer;
+  cursor: none !important;
   opacity: 0;
   transition: opacity 1.2s ease;
   box-shadow: 0 0 80px rgba(45,27,105,0.3);
