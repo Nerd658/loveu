@@ -48,6 +48,14 @@ body {
   body {
     cursor: none;
   }
+  body * {
+    cursor: none !important;
+  }
+  body:has(button:hover) #cursor::before,
+  body:has([role="button"]:hover:not([aria-disabled="true"])) #cursor::before {
+    transform: translate(-50%, -50%) scale(1.8) !important;
+    transition: transform 0.2s ease-out;
+  }
   #cursor {
     display: block;
     position: fixed;
