@@ -13,3 +13,7 @@
 ## 2024-05-18 - Managing Screen Reader Verbosity with Typewriter Effects
 **Learning:** Using `aria-live="polite"` on elements with typewriter or character-by-character animations creates excessive verbosity, as screen readers will announce every single appended character.
 **Action:** Remove `aria-live` from the animating text container. Instead, set the full text as the `aria-label` on the parent container right before focusing it, and add `aria-hidden="true"` to the animating children so the text is announced smoothly once.
+
+## 2024-11-21 - Custom Cursor Interaction State Using CSS :has()
+**Learning:** When using custom JavaScript-driven pointer cursors that rely on a base `@keyframes` animation, adding interactive visual states (like scaling on hover) can be tricky because CSS transforms are easily overridden. Relying on `body:has(button:hover)` provides an elegant, JavaScript-free way to change the cursor styling based on the interaction state of its siblings/children.
+**Action:** Use `:has()` combined with `!important` on the transform property to successfully override default keyframe animations and provide reliable visual feedback for custom cursors over interactive elements.

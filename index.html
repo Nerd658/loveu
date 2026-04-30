@@ -45,8 +45,12 @@ body {
   display: none;
 }
 @media (pointer: fine) {
-  body {
-    cursor: none;
+  body, button, .envelope, #constCanvas {
+    cursor: none !important;
+  }
+  body:has(button:hover, .envelope:hover, #constCanvas:hover:not([aria-disabled="true"])) #cursor::before {
+    transform: translate(-50%, -50%) scale(1.8) !important;
+    text-shadow: 0 0 12px var(--gold), 0 0 30px rgba(201,168,76,0.8);
   }
   #cursor {
     display: block;
