@@ -45,8 +45,13 @@ body {
   display: none;
 }
 @media (pointer: fine) {
-  body {
-    cursor: none;
+  body, body * {
+    cursor: none !important;
+  }
+  body:has(button:hover, [role="button"]:hover) #cursor::before {
+    transform: translate(-50%, -50%) scale(1.8) !important;
+    opacity: 1 !important;
+    transition: transform 0.2s, opacity 0.2s;
   }
   #cursor {
     display: block;
