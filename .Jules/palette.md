@@ -13,3 +13,6 @@
 ## 2024-05-18 - Managing Screen Reader Verbosity with Typewriter Effects
 **Learning:** Using `aria-live="polite"` on elements with typewriter or character-by-character animations creates excessive verbosity, as screen readers will announce every single appended character.
 **Action:** Remove `aria-live` from the animating text container. Instead, set the full text as the `aria-label` on the parent container right before focusing it, and add `aria-hidden="true"` to the animating children so the text is announced smoothly once.
+## 2024-05-18 - Resolving Dual-Cursor Bugs and Enhancing Custom Cursors
+**Learning:** When implementing a custom pointer cursor (`#cursor`) for fine pointers, explicitly setting `cursor: none` only on `body` can lead to dual-cursor bugs because child elements (like buttons or links) might override it with explicit pointer cursors. Also, interactive custom cursors should provide visual feedback without complex JS logic.
+**Action:** Use `body, body * { cursor: none !important; }` to completely hide default cursors everywhere. Provide visual hover feedback by using the CSS `:has()` pseudo-class (e.g., `body:has(button:hover) #cursor::before`) to target and style the custom cursor element interactively based on DOM state changes, taking care to override default animations with `!important`.
