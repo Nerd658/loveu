@@ -17,3 +17,6 @@
 ## 2024-05-01 - Custom Cursor Interaction States
 **Learning:** Custom cursors require explicit interactive states because standard `:hover` states don't naturally affect a detached fixed cursor element. Additionally, simply setting `cursor: none` on `body` doesn't prevent child elements with explicit `cursor: pointer` from showing the default cursor alongside the custom one, creating a confusing dual-cursor effect.
 **Action:** Always use `body, body * { cursor: none !important; }` inside the fine-pointer media query when using a custom cursor. To add hover states to the custom cursor without JavaScript listeners on every element, use the modern CSS `:has()` pseudo-class on the body: `body:has(button:hover, a:hover) #cursor::before { ... }`.
+## 2024-05-18 - Input-agnostic Microcopy and Keyboard Visual Parity
+**Learning:** Using device-specific instructions like "Clique pour ouvrir" assumes a mouse interaction, confusing touch and keyboard users. Additionally, relying solely on `:hover` styles for custom interactive elements leaves keyboard users without visual feedback when tabbing to those elements.
+**Action:** Always use input-agnostic action verbs (e.g., "Ouvrir", "Révéler") in microcopy. Furthermore, explicitly map `:focus-visible` pseudo-classes alongside `:hover` rules for custom interactive elements to ensure visual parity across input modalities.
