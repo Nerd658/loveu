@@ -67,7 +67,7 @@ body {
     text-shadow: 0 0 8px var(--gold), 0 0 20px rgba(201,168,76,0.5);
     animation: cursorPulse 2s ease-in-out infinite;
   }
-  body:has(button:hover, [role="button"]:hover, a:hover) #cursor::before {
+  body:has(button:hover, [role="button"]:hover, a:hover, [tabindex="0"]:hover) #cursor::before {
     transform: translate(-50%, -50%) scale(1.8) !important;
     text-shadow: 0 0 12px var(--gold), 0 0 30px rgba(201,168,76,0.8) !important;
     opacity: 1 !important;
@@ -209,7 +209,7 @@ body {
   position: relative;
   overflow: hidden;
 }
-.intro-btn:hover {
+.intro-btn:hover, .intro-btn:focus-visible {
   background: rgba(201,168,76,0.1);
   border-color: var(--gold);
 }
@@ -221,7 +221,7 @@ body {
   transform: translateX(-100%);
   transition: transform 0.5s ease;
 }
-.intro-btn:hover::after { transform: translateX(100%); }
+.intro-btn:hover::after, .intro-btn:focus-visible::after { transform: translateX(100%); }
 
 /* ─── MAIN CONTENT ─── */
 #main { position: relative; z-index: 10; }
@@ -505,7 +505,7 @@ body {
   cursor: pointer;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-.envelope:hover { transform: translateY(-4px); }
+.envelope:hover, .envelope:focus-visible { transform: translateY(-4px); }
 
 /* bottom body */
 .env-bottom {
@@ -679,7 +679,7 @@ body {
   box-shadow: 0 0 80px rgba(45,27,105,0.3);
 }
 #constCanvas.vis { opacity: 1; }
-#constCanvas:hover:not([aria-disabled="true"]) {
+#constCanvas:hover:not([aria-disabled="true"]), #constCanvas:focus-visible:not([aria-disabled="true"]) {
   background: radial-gradient(circle at 50% 50%, rgba(45,27,105,0.4) 0%, rgba(3,4,15,0.85) 65%);
   box-shadow: 0 0 100px rgba(45,27,105,0.5);
 }
@@ -909,7 +909,7 @@ body {
         <div class="env-flap-tri"></div>
         <div class="env-seal-center">✦</div>
       </div>
-      <p class="env-click-hint" id="envHint">Clique pour ouvrir ✦</p>
+      <p class="env-click-hint" id="envHint">Ouvrir ✦</p>
     </div>
     <!-- LETTRE cachée, apparaît après clic -->
     <article id="letterCard" class="letter-card" tabindex="-1">
@@ -926,7 +926,7 @@ body {
   <section id="constellation-section" aria-labelledby="constEyebrow">
     <h2 class="section-eyebrow" id="constEyebrow">Notre constellation</h2>
     <canvas id="constCanvas" width="480" height="480" role="button" tabindex="0" aria-label="Révéler la constellation"></canvas>
-    <p class="const-hint" id="constHint" aria-hidden="true">Clique pour révéler notre étoile ✦</p>
+    <p class="const-hint" id="constHint" aria-hidden="true">Révéler notre étoile ✦</p>
   </section>
 
   <!-- FINALE -->

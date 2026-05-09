@@ -17,3 +17,6 @@
 ## 2024-05-01 - Custom Cursor Interaction States
 **Learning:** Custom cursors require explicit interactive states because standard `:hover` states don't naturally affect a detached fixed cursor element. Additionally, simply setting `cursor: none` on `body` doesn't prevent child elements with explicit `cursor: pointer` from showing the default cursor alongside the custom one, creating a confusing dual-cursor effect.
 **Action:** Always use `body, body * { cursor: none !important; }` inside the fine-pointer media query when using a custom cursor. To add hover states to the custom cursor without JavaScript listeners on every element, use the modern CSS `:has()` pseudo-class on the body: `body:has(button:hover, a:hover) #cursor::before { ... }`.
+## 2024-05-30 - Focus-Visible Parity & Input-Agnostic Microcopy
+**Learning:** Keyboard users navigating via focus often miss vital interactive affordances if a design system maps hover states aggressively without matching `:focus-visible` states, and language like "Clique" breaks immersion or accessibility for touch and keyboard users.
+**Action:** When adding or verifying interactive CSS elements (buttons, envelopes, canvas targets), systematically ensure `, .class:focus-visible` mirrors `.class:hover` styling, and always prefer input-agnostic verbs like "Ouvrir" over "Clique".
