@@ -275,6 +275,7 @@ body {
 .scroll-indicator {
   position: absolute;
   bottom: 2.5rem; left: 50%;
+  text-decoration: none;
   transform: translateX(-50%);
   display: flex; flex-direction: column;
   align-items: center; gap: 0.6rem;
@@ -824,15 +825,15 @@ body {
     <p class="hero-pre">Une étoile, pour toi</p>
     <h2 class="hero-title">pour <span>Hafiya</span></h2>
     <p class="hero-sub">Il y a des personnes qui entrent dans une vie et la transforment pour toujours. Tu es l'une d'elles.</p>
-    <div class="scroll-indicator">
-      <span>Descends</span>
-      <div class="scroll-bar"></div>
-    </div>
+    <a class="scroll-indicator" href="#memories" aria-label="Descendre aux souvenirs">
+      <span aria-hidden="true">Descends</span>
+      <div class="scroll-bar" aria-hidden="true"></div>
+    </a>
   </header>
 
   <!-- MEMORIES -->
   <div class="divider" aria-hidden="true"><span class="divider-gem">✦</span></div>
-  <section class="section-wrap" aria-labelledby="memoriesEyebrow">
+  <section id="memories" class="section-wrap" aria-labelledby="memoriesEyebrow">
     <h2 class="section-eyebrow" id="memoriesEyebrow">Nos moments</h2>
     <div class="memories-grid">
       <article class="mem-card">
