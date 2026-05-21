@@ -281,6 +281,13 @@ body {
   opacity: 0;
   animation: heroUp 1s ease 2s forwards;
 }
+.scroll-indicator {
+  text-decoration: none;
+}
+.scroll-indicator:hover, .scroll-indicator:focus-visible {
+  outline: none;
+  opacity: 0.8;
+}
 .scroll-indicator span {
   font-family: 'Cinzel', serif;
   font-size: 0.55rem;
@@ -824,15 +831,15 @@ body {
     <p class="hero-pre">Une étoile, pour toi</p>
     <h2 class="hero-title">pour <span>Hafiya</span></h2>
     <p class="hero-sub">Il y a des personnes qui entrent dans une vie et la transforment pour toujours. Tu es l'une d'elles.</p>
-    <div class="scroll-indicator">
-      <span>Descends</span>
-      <div class="scroll-bar"></div>
-    </div>
+    <a href="#memories" class="scroll-indicator" aria-label="Faire défiler vers le bas">
+      <span aria-hidden="true">Descends</span>
+      <div class="scroll-bar" aria-hidden="true"></div>
+    </a>
   </header>
 
   <!-- MEMORIES -->
   <div class="divider" aria-hidden="true"><span class="divider-gem">✦</span></div>
-  <section class="section-wrap" aria-labelledby="memoriesEyebrow">
+  <section id="memories" class="section-wrap" aria-labelledby="memoriesEyebrow">
     <h2 class="section-eyebrow" id="memoriesEyebrow">Nos moments</h2>
     <div class="memories-grid">
       <article class="mem-card">
