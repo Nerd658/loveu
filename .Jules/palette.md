@@ -20,3 +20,6 @@
 ## 2024-05-30 - Focus-Visible Parity & Input-Agnostic Microcopy
 **Learning:** Keyboard users navigating via focus often miss vital interactive affordances if a design system maps hover states aggressively without matching `:focus-visible` states, and language like "Clique" breaks immersion or accessibility for touch and keyboard users.
 **Action:** When adding or verifying interactive CSS elements (buttons, envelopes, canvas targets), systematically ensure `, .class:focus-visible` mirrors `.class:hover` styling, and always prefer input-agnostic verbs like "Ouvrir" over "Clique".
+## 2024-05-18 - Functional Decorative Elements
+**Learning:** Decorative visual indicators (like "scroll down" prompts) are often missed opportunities for accessibility and interaction. When they remain as `div` elements, they provide no keyboard navigation value.
+**Action:** Convert decorative directional prompts into functional semantic elements (like `<a>` with `href` pointing to the next section ID), include an `aria-label`, use `aria-hidden="true"` on internal visual elements to prevent redundant screen reader readout, and strip default link styling (like `text-decoration: none;`). Add focus-visible states matching the design system.
