@@ -23,3 +23,6 @@
 ## 2024-05-31 - Semantic Scroll Indicators
 **Learning:** Decorative "scroll down" indicators are often skipped by screen readers or inaccessible via keyboard. Making them functional anchor links improves navigation flow.
 **Action:** Convert decorative scroll indicators into `<a>` tags with `href` pointing to the next section, include `aria-label`, add `aria-hidden="true"` to visual children, and strip default link styling to prevent visual regressions.
+## 2024-05-29 - Scroll Indicator Positioning and ARIA label override
+**Learning:** CSS keyframes that use `transform: translateY` overwrite any base `transform` styles like `translateX(-50%)`, breaking horizontal centering. Redundant ARIA label overwrites (e.g. `card.setAttribute('aria-label', fullLetter)`) discard previously constructed richer labels.
+**Action:** When animating elements positioned via `transform: translateX(-50%)`, ensure the keyframes preserve the translation in the `transform` property (e.g., `transform: translateX(-50%) translateY(0)`). Always verify ARIA labels are not redundantly overwritten.
