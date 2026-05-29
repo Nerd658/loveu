@@ -272,6 +272,11 @@ body {
   to { opacity:1; transform: translateY(0); }
 }
 
+@keyframes scrollUp {
+  from { opacity:0; transform: translateX(-50%) translateY(25px); }
+  to { opacity:1; transform: translateX(-50%) translateY(0); }
+}
+
 .scroll-indicator {
   position: absolute;
   bottom: 2.5rem; left: 50%;
@@ -279,9 +284,12 @@ body {
   display: flex; flex-direction: column;
   align-items: center; gap: 0.6rem;
   opacity: 0;
-  animation: heroUp 1s ease 2s forwards;
+  animation: scrollUp 1s ease 2s forwards;
   text-decoration: none;
   color: inherit;
+}
+.scroll-indicator:hover, .scroll-indicator:focus-visible {
+  opacity: 0.7 !important;
 }
 .scroll-indicator span {
   font-family: 'Cinzel', serif;
@@ -1161,7 +1169,6 @@ function handleEnvelopeOpen() {
     const card = document.getElementById('letterCard');
     card.setAttribute('aria-label', "Pour toi, Hafiya. " + fullLetter + " — Ton homme");
     card.classList.add('show');
-    card.setAttribute('aria-label', fullLetter);
     card.focus();
     if (!letterDone) setTimeout(typeIt, 400);
   }, 500);
