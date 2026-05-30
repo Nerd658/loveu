@@ -1254,12 +1254,16 @@ function drawConst(p) {
 
   // lines
   const lDone = Math.floor(p * edges.length);
-  for (let i=0;i<lDone;i++) {
-    const [a,b] = edges[i];
-    const sa=cstars[a], sb=cstars[b];
+  if (lDone > 0) {
     cctx.strokeStyle = 'rgba(201,168,76,0.28)';
     cctx.lineWidth = 0.7;
-    cctx.beginPath(); cctx.moveTo(sa.x,sa.y); cctx.lineTo(sb.x,sb.y); cctx.stroke();
+    cctx.beginPath();
+    for (let i=0;i<lDone;i++) {
+      const [a,b] = edges[i];
+      const sa=cstars[a], sb=cstars[b];
+      cctx.moveTo(sa.x,sa.y); cctx.lineTo(sb.x,sb.y);
+    }
+    cctx.stroke();
   }
 
   // stars
