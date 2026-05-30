@@ -23,3 +23,6 @@
 ## 2024-05-31 - Semantic Scroll Indicators
 **Learning:** Decorative "scroll down" indicators are often skipped by screen readers or inaccessible via keyboard. Making them functional anchor links improves navigation flow.
 **Action:** Convert decorative scroll indicators into `<a>` tags with `href` pointing to the next section, include `aria-label`, add `aria-hidden="true"` to visual children, and strip default link styling to prevent visual regressions.
+## 2024-06-01 - Preserving Rich Context in ARIA Labels
+**Learning:** When dynamically setting `aria-label` via JavaScript, updating it multiple times consecutively (e.g., overwriting a richer descriptive string with a shorter one before focusing) causes screen readers to only announce the final, less informative string.
+**Action:** Review programmatic ARIA attribute updates to ensure they don't redundantly overwrite themselves, preserving the most complete and descriptive context for assistive technologies.
