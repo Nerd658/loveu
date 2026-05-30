@@ -1243,12 +1243,12 @@ let cProgress = 0, cAnim = false, cDone = false;
 function drawConst(p) {
   cctx.clearRect(0,0,SZ,SZ);
   // bg dots
+  cctx.globalAlpha = 0.12;
+  cctx.fillStyle = '#e8e4ff';
   for (let i=0;i<80;i++) {
     const seed = i*137.508;
     const x=(seed*73.1)%SZ, y=(seed*51.7)%SZ;
-    cctx.globalAlpha = 0.12;
-    cctx.fillStyle = '#e8e4ff';
-    cctx.beginPath(); cctx.arc(x,y,0.6,0,Math.PI*2); cctx.fill();
+    cctx.beginPath(); cctx.arc(x,y,0.6,0,PI2); cctx.fill();
   }
   cctx.globalAlpha = 1;
 
