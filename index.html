@@ -1063,14 +1063,7 @@ animIC();
 
 /* Shooting stars in intro */
 function introShoot() {
-  const el = document.createElement('div');
-  el.className = 'shooting';
-  el.style.width = (Math.random()*80+60)+'px';
-  el.style.left = Math.random()*60+'vw';
-  el.style.top = Math.random()*40+'vh';
-  el.style.transform = `rotate(${Math.random()*20+15}deg)`;
-  document.getElementById('cinematic-intro').appendChild(el);
-  setTimeout(() => el.remove(), 1100);
+  createShootingStar(document.getElementById('cinematic-intro'), 60, 80, 15, 20, 1100, 60, 40);
 }
 const shootInterval = setInterval(introShoot, 2500);
 
@@ -1415,7 +1408,7 @@ function animFW() {
       fwctx.globalAlpha = p.alpha;
       fwctx.fillStyle = p.col;
       fwctx.beginPath();
-      fwctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      fwctx.arc(p.x, p.y, p.r, 0, PI2);
       fwctx.fill();
       nextParticles.push(p);
     }
@@ -1434,15 +1427,19 @@ function animFW() {
 /* ══════════════════════════════════
    SHOOTING STARS
 ══════════════════════════════════ */
-function spawnShoot() {
+function createShootingStar(container, minWidth, widthRange, minRotation, rotationRange, duration, leftVwRange, topVhRange) {
   const el = document.createElement('div');
   el.className = 'shooting';
-  el.style.width = (Math.random()*90+50)+'px';
-  el.style.left = Math.random()*70+'vw';
-  el.style.top = Math.random()*50+'vh';
-  el.style.transform = `rotate(${Math.random()*25+10}deg)`;
-  document.body.appendChild(el);
-  setTimeout(() => el.remove(), 1200);
+  el.style.width = (Math.random() * widthRange + minWidth) + 'px';
+  el.style.left = Math.random() * leftVwRange + 'vw';
+  el.style.top = Math.random() * topVhRange + 'vh';
+  el.style.transform = `rotate(${Math.random() * rotationRange + minRotation}deg)`;
+  container.appendChild(el);
+  setTimeout(() => el.remove(), duration);
+}
+
+function spawnShoot() {
+  createShootingStar(document.body, 50, 90, 10, 25, 1200, 70, 50);
 }
 setInterval(spawnShoot, 5000);
 setTimeout(spawnShoot, 3000);
