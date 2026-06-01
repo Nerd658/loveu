@@ -26,3 +26,10 @@
 ## 2024-06-01 - Preserving Rich Context in ARIA Labels
 **Learning:** When dynamically setting `aria-label` via JavaScript, updating it multiple times consecutively (e.g., overwriting a richer descriptive string with a shorter one before focusing) causes screen readers to only announce the final, less informative string.
 **Action:** Review programmatic ARIA attribute updates to ensure they don't redundantly overwrite themselves, preserving the most complete and descriptive context for assistive technologies.
+## 2024-07-25 - ARIA-Disabled State Parity for Custom Cursors
+**Learning:** CSS-driven custom cursors using `:has(:hover)` can falsely signal interactivity on elements that are functionally disabled but lack native `:disabled` attributes.
+**Action:** Always append `:not([aria-disabled="true"])` to custom interactive selectors in CSS to ensure visual cues match the element's accessibility state.
+
+## 2024-07-25 - Decorative Character Accessibility
+**Learning:** Decorative characters (like '✦') within text can create confusing readout for screen readers if not explicitly hidden.
+**Action:** Wrap decorative characters within text elements in `<span aria-hidden="true">` to prevent redundant or confusing audio readout.
