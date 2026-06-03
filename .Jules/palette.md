@@ -26,3 +26,10 @@
 ## 2024-06-01 - Preserving Rich Context in ARIA Labels
 **Learning:** When dynamically setting `aria-label` via JavaScript, updating it multiple times consecutively (e.g., overwriting a richer descriptive string with a shorter one before focusing) causes screen readers to only announce the final, less informative string.
 **Action:** Review programmatic ARIA attribute updates to ensure they don't redundantly overwrite themselves, preserving the most complete and descriptive context for assistive technologies.
+## 2024-06-03 - Custom Cursors and ARIA Disabled States
+**Learning:** This app uses CSS `:has(:hover)` on interactive selectors (like `[role="button"]`) to visually scale a custom cursor. Because elements like the constellation canvas rely on `aria-disabled="true"` rather than native disabled attributes when inactive, the custom cursor incorrectly continues to signal interactivity.
+**Action:** When mapping visual feedback states via CSS (like custom cursors), always explicitly append `:not([aria-disabled="true"])` to all interactive selectors to prevent false affordances on custom UI elements.
+
+## 2024-06-03 - Redundant Screen Reader Readout on Decorative Symbols
+**Learning:** The app frequently appends decorative symbols (e.g., '✦') to button microcopy (like "Entrer ✦") and uses redundant visual hints (e.g., "Ouvrir ✦" near the envelope). These create verbosity and confusion for screen reader users since they lack semantic value.
+**Action:** Wrap inline decorative characters in `<span aria-hidden="true">` and apply `aria-hidden="true"` to adjacent visual hint text when the primary interactive element already provides a comprehensive `aria-label`.
