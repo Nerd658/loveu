@@ -26,3 +26,6 @@
 ## 2024-06-01 - Preserving Rich Context in ARIA Labels
 **Learning:** When dynamically setting `aria-label` via JavaScript, updating it multiple times consecutively (e.g., overwriting a richer descriptive string with a shorter one before focusing) causes screen readers to only announce the final, less informative string.
 **Action:** Review programmatic ARIA attribute updates to ensure they don't redundantly overwrite themselves, preserving the most complete and descriptive context for assistive technologies.
+## 2024-06-04 - Prevent False Affordances on Custom Cursors
+**Learning:** Custom global cursors driven by CSS `:has(:hover)` must explicitly exclude elements with `aria-disabled="true"`. Otherwise, they create false active state affordances that confuse users into thinking disabled elements are still interactive.
+**Action:** Always append `:not([aria-disabled="true"])` to interactive element selectors (like button, a, [role="button"]) when defining global hover effects for custom UI elements.
