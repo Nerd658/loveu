@@ -67,7 +67,7 @@ body {
     text-shadow: 0 0 8px var(--gold), 0 0 20px rgba(201,168,76,0.5);
     animation: cursorPulse 2s ease-in-out infinite;
   }
-  body:has(button:hover, [role="button"]:hover, a:hover, [tabindex="0"]:hover) #cursor::before {
+  body:has(button:not([disabled]):not([aria-disabled="true"]):hover, [role="button"]:not([aria-disabled="true"]):hover, a:not([aria-disabled="true"]):hover, [tabindex="0"]:not([aria-disabled="true"]):hover) #cursor::before {
     transform: translate(-50%, -50%) scale(1.8) !important;
     text-shadow: 0 0 12px var(--gold), 0 0 30px rgba(201,168,76,0.8) !important;
     opacity: 1 !important;
