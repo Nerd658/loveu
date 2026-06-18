@@ -26,3 +26,6 @@
 ## 2024-06-01 - Preserving Rich Context in ARIA Labels
 **Learning:** When dynamically setting `aria-label` via JavaScript, updating it multiple times consecutively (e.g., overwriting a richer descriptive string with a shorter one before focusing) causes screen readers to only announce the final, less informative string.
 **Action:** Review programmatic ARIA attribute updates to ensure they don't redundantly overwrite themselves, preserving the most complete and descriptive context for assistive technologies.
+## 2024-06-18 - Accurate Custom Cursor Interactive Feedback
+**Learning:** When interactive elements rely on `aria-disabled="true"` instead of native `:disabled` attributes, CSS-driven visual feedback (like custom cursors triggering via `:has(:hover)`) will incorrectly show interactive cues unless explicitly filtered.
+**Action:** Ensure CSS visual feedback for cursors uses the `:has()` pseudo-class to explicitly check for non-disabled states (e.g., `:not(:disabled):not([aria-disabled="true"]):hover`) to prevent incorrect interactive cues on disabled elements.
