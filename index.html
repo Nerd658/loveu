@@ -1077,7 +1077,11 @@ const shootInterval = setInterval(introShoot, 2500);
 /* ══════════════════════════════════
    ENTER BUTTON
 ══════════════════════════════════ */
-document.getElementById('enterBtn').addEventListener('click', () => {
+const enterBtn = document.getElementById('enterBtn');
+enterBtn.addEventListener('click', () => {
+  if (enterBtn.disabled) return;
+  enterBtn.disabled = true;
+  enterBtn.setAttribute('aria-disabled', 'true');
   clearInterval(shootInterval);
   const intro = document.getElementById('cinematic-intro');
   intro.classList.add('fade-out');
@@ -1156,6 +1160,8 @@ let letterDone = false;
 let charIdx = 0;
 
 function handleEnvelopeOpen() {
+  if (envelopeEl.getAttribute('aria-disabled') === 'true') return;
+  envelopeEl.setAttribute('aria-disabled', 'true');
   const wrap = document.getElementById('envelopeWrap');
   if (wrap.style.display === 'none') return;
   wrap.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
