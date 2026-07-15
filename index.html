@@ -209,7 +209,7 @@ body {
   position: relative;
   overflow: hidden;
 }
-.intro-btn:hover, .intro-btn:focus-visible {
+.intro-btn:not(:disabled):not([aria-disabled="true"]):hover, .intro-btn:not(:disabled):not([aria-disabled="true"]):focus-visible {
   background: rgba(201,168,76,0.1);
   border-color: var(--gold);
 }
@@ -221,7 +221,7 @@ body {
   transform: translateX(-100%);
   transition: transform 0.5s ease;
 }
-.intro-btn:hover::after, .intro-btn:focus-visible::after { transform: translateX(100%); }
+.intro-btn:not(:disabled):not([aria-disabled="true"]):hover::after, .intro-btn:not(:disabled):not([aria-disabled="true"]):focus-visible::after { transform: translateX(100%); }
 
 /* ─── MAIN CONTENT ─── */
 #main { position: relative; z-index: 10; }
@@ -512,7 +512,7 @@ body {
   cursor: pointer;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-.envelope:hover, .envelope:focus-visible { transform: translateY(-4px); }
+.envelope:not([aria-disabled="true"]):hover, .envelope:not([aria-disabled="true"]):focus-visible { transform: translateY(-4px); }
 
 /* bottom body */
 .env-bottom {
@@ -1077,7 +1077,10 @@ const shootInterval = setInterval(introShoot, 2500);
 /* ══════════════════════════════════
    ENTER BUTTON
 ══════════════════════════════════ */
-document.getElementById('enterBtn').addEventListener('click', () => {
+document.getElementById('enterBtn').addEventListener('click', function() {
+  if (this.disabled) return;
+  this.disabled = true;
+  this.setAttribute('aria-disabled', 'true');
   clearInterval(shootInterval);
   const intro = document.getElementById('cinematic-intro');
   intro.classList.add('fade-out');
@@ -1156,6 +1159,10 @@ let letterDone = false;
 let charIdx = 0;
 
 function handleEnvelopeOpen() {
+  const envelopeEl = document.getElementById('envelope');
+  if (envelopeEl.getAttribute('aria-disabled') === 'true') return;
+  envelopeEl.setAttribute('aria-disabled', 'true');
+
   const wrap = document.getElementById('envelopeWrap');
   if (wrap.style.display === 'none') return;
   wrap.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
