@@ -29,3 +29,6 @@
 ## 2024-07-08 - Accessible Custom Cursors & Decorative Hints
 **Learning:** When interactive elements rely on `aria-disabled="true"` instead of native attributes, generic custom cursor hover selectors (e.g., `:has(:hover)`) will incorrectly scale or highlight, confusing sighted users. Additionally, decorative characters like '✦' or labels like 'Ouvrir' next to `aria-label` elements create redundant audio output for screen readers.
 **Action:** Always refine `:has(:hover)` selectors for custom cursors to explicitly exclude disabled states (`:not([aria-disabled="true"]):not(:disabled)`). Always apply `aria-hidden="true"` to non-essential, decorative text or icon symbols inside or adjacent to labeled interactive elements.
+## 2024-05-18 - Double-Click Prevention on Async UI
+**Learning:** Rapid double-clicks on interactive elements that trigger delayed visual transitions can queue duplicate timeouts, leading to erratic UI state.
+**Action:** Immediately apply `disabled = true` and `aria-disabled="true"` upon the first click (and check for these states to return early) on buttons triggering async animations or transitions.
