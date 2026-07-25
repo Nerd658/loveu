@@ -1,0 +1,5 @@
+node_modules/
+.pnpm/
+test-results/
+__pycache__/
+videos/
