@@ -5,6 +5,7 @@ import Timeline from './pages/Timeline'
 import Coach from './pages/Coach'
 import Planning from './pages/Planning'
 import Settings from './pages/Settings'
+import Ask from './pages/Ask'
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="coach" element={<Coach />} />
         <Route path="planning" element={<Planning />} />
         <Route path="settings" element={<Settings />} />
+        <Route path="ask" element={<Ask />} />
       </Route>
     </Routes>
   )

@@ -1,6 +1,6 @@
 import { Outlet, Link, useLocation } from 'react-router-dom'
 import { motion } from 'framer-motion'
-import { Heart, Clock, MessageCircle, CalendarHeart, Settings } from 'lucide-react'
+import { Heart, Clock, MessageCircle, CalendarHeart, Settings, Gift } from 'lucide-react'
 import { useStore } from '../store/useStore'
 
 export default function MainLayout() {
@@ -12,6 +12,7 @@ export default function MainLayout() {
     { path: '/timeline', icon: Clock, label: 'Souvenirs' },
     { path: '/planning', icon: CalendarHeart, label: 'Projets' },
     { path: '/coach', icon: MessageCircle, label: 'Coach IA' },
+    { path: '/ask', icon: Gift, label: 'Inviter' },
   ]
 
   return (
