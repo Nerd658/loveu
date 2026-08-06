@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Heart, Sparkles, MapPin } from 'lucide-react'
+import { Heart, Gem, MapPin } from 'lucide-react'
 
 export default function Ask() {
   const [noCount, setNoCount] = useState(0)
@@ -65,7 +65,7 @@ export default function Ask() {
           className="mb-12"
         >
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-gold/30 bg-gold/10 text-gold text-xs uppercase tracking-widest font-semibold mb-6">
-            <Sparkles size={14} />
+            <Gem size={14} />
             <span>Proposition Spéciale</span>
           </div>
           

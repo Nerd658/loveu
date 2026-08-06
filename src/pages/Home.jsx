@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { Sparkles, ArrowRight, Heart, Calendar } from 'lucide-react'
+import { Gem, ArrowRight, Heart, Calendar } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { useStore } from '../store/useStore'
 
@@ -26,7 +26,7 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-primary/30 bg-primary/10 text-primary text-xs uppercase tracking-widest font-semibold mb-6"
           >
-            <Sparkles size={14} />
+            <Gem size={14} />
             <span>Relationship Master</span>
           </motion.div>
 
@@ -84,7 +84,7 @@ export default function Home() {
           {/* Card 3 */}
           <Link to="/planning" className="glass-card p-6 flex flex-col justify-between h-40 hover:bg-white/5 transition-colors group cursor-pointer">
             <div className="text-blue-400 flex items-center justify-between">
-              <Sparkles size={24} />
+              <Gem size={24} />
               <ArrowRight size={16} className="text-foreground/30 group-hover:text-foreground transition-colors group-hover:translate-x-1" />
             </div>
             <div>
