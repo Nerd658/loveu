@@ -1,0 +1,22 @@
+[2026-08-06] — Transformation Complète : Relationship Master
+
+What changed:
+- Refonte totale du projet pour ne plus être une simple page de lettre "Hafiya", mais un véritable "Relationship Master" générique et complet.
+- Implémentation d'un Zustand store persistant (useStore.js) pour gérer les infos du partenaire, les souvenirs (Timeline) et les projets/idées (Planning).
+- Création d'un Dashboard (Home.jsx) avec des compteurs de jours, un affichage du langage de l'amour, et le résumé des projets.
+- Création d'une interface de Coach IA (Coach.jsx) pour obtenir des conseils en relation amoureuse.
+- Mise à jour globale du Layout et du Menu.
+
+Why:
+- Le but (/goal) était d'adapter le projet car la relation initiale est terminée, pour en faire une véritable application ("best en relation amoureuse") réutilisable, avec de bonnes pratiques et une architecture propre (Vite, React, Tailwind, Zustand).
+
+Files affected:
+- src/store/useStore.js — Nouveau store global
+- src/App.jsx & MainLayout.jsx — Ajout des nouvelles routes
+- src/pages/* — (Home, Timeline, Coach, Planning, Settings) créés et connectés au store.
+
+Breaking changes:
+- Le design est maintenant modulaire. L'ancien site est totalement déprécié mais sauvegardé en mode legacy hors du src.
+
+Notes for review:
+- Tout est testé, buildé, et fonctionnel !
