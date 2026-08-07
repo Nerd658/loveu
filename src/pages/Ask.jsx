@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
 import { motion, AnimatePresence, useSpring } from 'framer-motion'
 import { Heart, Gem, MapPin, Mail, Sparkles, QrCode } from 'lucide-react'
 import confetti from 'canvas-confetti'
@@ -70,7 +69,6 @@ const playTone = (type = 'sine', freq = 440, duration = 0.2, vol = 0.1) => {
 }
 
 export default function Ask() {
-  const navigate = useNavigate()
   const [phase, setPhase] = useState('envelope') 
   const [noCount, setNoCount] = useState(0)
   
@@ -323,15 +321,6 @@ export default function Ask() {
                     
                   </div>
                 </div>
-
-                <motion.button 
-                  onClick={() => navigate('/app')}
-                  className="w-full mt-6 bg-primary text-white py-4 rounded-xl font-medium shadow-[0_0_20px_rgba(225,29,72,0.4)] hover:shadow-[0_0_30px_rgba(225,29,72,0.7)] transition-all flex justify-center items-center gap-2"
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  Entrer dans notre espace privé <Gem size={18} />
-                </motion.button>
               </motion.div>
             )}
 
